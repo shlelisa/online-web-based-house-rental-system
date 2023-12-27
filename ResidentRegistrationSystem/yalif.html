@@ -1,0 +1,259 @@
+<?php
+session_start();
+include('includes/config.php');
+error_reporting(0);
+if(strlen($_SESSION['slogin'])==0)
+    {   
+header('location:index.php');
+}
+else{
+
+if(isset($_POST['submit']))
+{
+$lgmm=$_POST['lgmm'];
+$cr=$_POST['cr'];
+$mhimatama=$_POST['mhimatama'];
+$mhimata=$_POST['mhimata'];
+$thimata=$_POST['thimata'];
+$gyakkaraw=$_POST['gyakkaraw'];
+$gender=$_POST['gender'];
+$ksera=$_POST['ksera'];
+$age=$_POST['age'];
+$gyakka=$_POST['gyakka'];
+$abba_alangaa=$_POST['abba_alangaa'];
+$date=$_POST['date'];
+$guyyaaadda=$_POST['guyyaaadda'];
+$murtiikename=$_POST['murtiikename'];
+
+// check email validation and save information
+       
+$ret=mysqli_query($con,"insert into galme(lgmm,cr,mhimatama,mhimata,thimata,gyakkaraw,gender,ksera,age,gyakka,date,abba_alangaa,guyyaaadda,murtiikename) values('$lgmm','$cr', '$mhimatama', '$mhimata', '$thimata', '$gyakkaraw', '$gender', '$ksera', '$age', '$gyakka', '$date', '$abba_alangaa', '$guyyaaadda', '$murtiikename')");
+if($ret)
+{
+$_SESSION['msg']="Sent Successfully !!";
+}
+else
+{
+  $_SESSION['msg']="Error : Not Register";
+}
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8">
+	<title>Adeemsa Qorannoo Yakka fi Muurtii Haqaa Kennisiisuu</title>
+
+	<!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
+
+	
+</head>
+<body>
+	
+
+	<?php if($_SESSION['id']!="");?>
+<?php $sql=mysqli_query($con,"select * from admin where id='".$_SESSION['id']."'");
+$cnt=1;
+while($row=mysqli_fetch_array($sql))
+{ ?>
+	<div class="header">
+		<div class="header-left">
+			<div class="menu-icon dw dw-menu"></div>
+			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+			<div class="header-search">
+				<form>
+					
+				</form>
+			</div>
+		</div>
+		<div class="header-right">
+			<div class="dashboard-setting user-notification">
+				<div class="dropdown">
+					<a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+						<i class="dw dw-settings2"></i>
+					</a>
+				</div>
+			</div>
+			<?php include('header_all.php'); ?>
+	<div class="mobile-menu-overlay"></div>
+
+	<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+			
+				<!-- Default Basic Forms Start -->
+				
+				
+
+				<!-- Form grid Start -->
+				<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<div class="pull-left">
+							
+							<center><h4><p class="mb-30">Adeemsa Qorannoo Yakka fi Muurtii Haqaa Kennisiisuu</p></h4></center>
+						</div>
+						
+					</div>
+					<center><font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font></center>
+				<form name="dept" method="post" enctype="multipart/form-data">
+						<div class="row">
+						<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Select Service</label>
+									<select name="lgmm" class="form-control">
+									<option>Galme RTD</option>
+									<option>Galme Balaa Tiraafikaa</option>
+									<option>Galme Aangoo Godinaa</option>
+									<option>Galme RTD</option>
+									<option>Galme RTD</option>
+									<option>Galme RTD</option>
+									<option>Galme RTD</option>
+									</select>
+								</div>
+								</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>LG.M.M</label>
+									<input type="text" name="lgmm" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>C/R</label>
+									<input type="text" name="cr" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Maqaa Himatama</label>
+									<input type="text" name="mhimatama" class="form-control">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Maqaa Himata</label>
+									<input type="text" name="mhimata" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Teessoo Himata</label>
+									<input type="text" name="thimata" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Gu.Ya.Raawatu</label>
+									<input type="date" name="gyakkaraw" class="form-control">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Gosa Yakkaa</label>
+									<input type="text" name="gyakka" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Kew.Seeraa</label>
+									<input type="text" name="ksera" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Umurii</label>
+									<input type="number" name="age" class="form-control">
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+																<label>Gender</label>
+																<div class="d-flex">
+																<div class="custom-control custom-radio mb-5 mr-20">
+																	<input type="radio" id="customRadio4" class="custom-control-input" value="Male" name="gender" >
+																	<label class="custom-control-label weight-400" for="customRadio4">Male</label>
+																</div>
+																<div class="custom-control custom-radio mb-5">
+																	<input type="radio" id="customRadio5" class="custom-control-input" value="Female" name="gender">
+																	<label class="custom-control-label weight-400" for="customRadio5">Female</label>
+																</div>
+																</div>
+															</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Gu/Ga/Baname</label>
+									<input type="date" name="date" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Abba Alangaa</label>
+									<input type="text" name="abba_alangaa" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="form-group">
+									<label>Guyyaa</label>
+									<input type="date" name="guyyaaadda" class="form-control">
+								</div>
+							</div>
+						</div>
+						
+						
+						
+							<div class="form-group">
+		<label>Murtii Kename</label>
+		<textarea  name="murtiikename" class="form-control"></textarea>
+	</div>
+	<div class="form-group mb-0">
+																<input type="submit" name="submit" class="btn btn-primary" value="Send Information">
+																
+															</div>
+							
+						</div>
+						
+					</form>
+					
+				</div>
+				
+				
+				<!-- Input Validation End -->
+
+			</div>
+			<?php include('footer.php'); ?> 
+		</div>
+	</div>
+	<!-- js -->
+	<script src="vendors/scripts/core.js"></script>
+	<script src="vendors/scripts/script.min.js"></script>
+	<script src="vendors/scripts/process.js"></script>
+	<script src="vendors/scripts/layout-settings.js"></script>
+</body>
+</html>
+<?php } ?><?php } ?>

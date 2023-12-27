@@ -1,0 +1,24 @@
+2bF elecrical and mechanical works
+
+Step 1: Install Laravel 8
+
+here, we need to install laravel 8 application using composer command.
+
+composer create-project --prefer-dist laravel/laravel blog
+Step 2: Create Auth with Jetstream Livewire
+
+Now, in this step, we need to use composer command to install jetstream, so let's run bellow command and install bellow library.
+
+composer require laravel/jetstream
+now, we need to create authentication using bellow command. you can create basic login, register and email verification. if you want to create team management then you have to pass addition parameter. you can see bellow commands:
+
+php artisan jetstream:install livewire
+Now, let's node js package:
+
+npm install
+let's run package:
+
+npm run dev
+now, we need to run migration command to create database table:
+
+php artisan migrate
